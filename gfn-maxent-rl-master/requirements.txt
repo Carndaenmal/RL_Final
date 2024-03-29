@@ -1,0 +1,11 @@
+chex
+optax
+jraph
+gym>=0.22.0
+pandas
+dm-haiku
+networkx
+tqdm
+wandb
+hydra-core
+omegaconf
