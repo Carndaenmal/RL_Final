@@ -30,9 +30,11 @@ class MLPFlow(nn.Module):
             nn.Linear(hidden_dim, hidden_dim),
         )
         self.forward_prob = nn.Sequential(nn.Linear(hidden_dim, out_dim))
-        self.stop = nn.Sequential(
-            nn.Linear(hidden_dim, hidden_dim), nn.LeakyReLU(), nn.Linear(hidden_dim, 1)
-        )
+        # self.stop = nn.Sequential(
+        #     nn.Linear(hidden_dim, hidden_dim), nn.LeakyReLU(), nn.Linear(hidden_dim, 1)
+        # )
+        self.stop = nn.Sequential(nn.Linear(hidden_dim, 1))
+
         self.out_dim = out_dim
         self.uniform_backwards = uniform_backwards
         self.has_misc = misc_out_dim > 0
