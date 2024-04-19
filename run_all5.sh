@@ -2,7 +2,15 @@
 
 
 
-sbatch --reservation=ubuntu2204 --nodes=1  --ntasks-per-node=1 --cpus-per-task=9 --gpus-per-task=1 --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=24:00:00 --mem=20G run10.sh 7
+sbatch --gpus=1  --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=24:00:00 --mem=20G run10.sh 7
+
+sbatch --gpus=1  --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=24:00:00 --mem=20G run10.sh 8
+
+sbatch --gpus=1  --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=24:00:00 --mem=20G run10.sh 9
+
+sbatch --gpus=1  --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=24:00:00 --mem=20G run10.sh 10
+
+sbatch --gpus=1  --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=24:00:00 --mem=20G run10.sh 11
 
 #sbatch --reservation=ubuntu2204 --nodes=1 --ntasks-per-node=1 --cpus-per-task=9 --gpus-per-task=1 --mail-user=dane.malenfant@mila.quebec --mail-type=END --time=96:00:00 --mem=40G run10.sh 8
 
