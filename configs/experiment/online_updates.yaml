@@ -4,43 +4,48 @@
 # python train.py experiment=tcg
 
 defaults:
-  - override /model: per_node_linear_tcg #hyper_tcg
-  - override /datamodule: rna_velocity #linear_velocity
+  - override /model: clean
+  - override /datamodule: linear_unidentifiable_velocity #linear_velocity
   - override /logger:
       - csv
       - wandb
   - override /trainer: gpu
-name: "per_node_rna_tcg_gfn"
+name: "linear_pre_node_gfn"
 
-seed: 0
+seed: 1
 
 datamodule:
-  batch_size: 500
+  batch_size: 500 #500
+  T: 2
+  p: 10
+  vars_to_deidentify: [0, 1, 2]
+  sparsity: 0.9
+  system: "linear"
+  sigma: 0
+  seed: 13
 
 # best
 model:
   env_batch_size: 1024
-  eval_batch_size: 1000
+  eval_batch_size: 5000
   full_posterior_eval: False
   uniform_backwards: True
   debug_use_shd_energy: False
   analytic_use_simple_mse_energy: True
-  analytic_use_bayesian_mse_energy: False
   loss_fn: "detailed_balance"
   alpha: 0
   temperature: 0.01
   temper_period: 5
-  prior_lambda: 45
+  prior_lambda: 0
   beta: 0.01
   confidence: 0.0
   hidden_dim: 128
-  gfn_freq: 1
+  gfn_freq: 5
   energy_freq: 1
   pretraining_epochs: 0
-  lr: 5e-5
+  lr: 1e-4
   hyper: "mlp"
   bias: True
-  test_mode: False
 
 trainer:
   max_epochs: 1000
@@ -49,4 +54,5 @@ trainer:
 
 logger:
   wandb:
-    tags: ["kl", "analytic", "rna", "per-node", "gfn", "${name}", "v_final_3"]
+    tags:
+      ["kl", "analytic", "linear", "per-node", "gfn", "${name}", "10nodes"]
